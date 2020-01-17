@@ -1,3 +1,4 @@
+*/
 import java.util.Scanner;
 import java.io.File;
 import java.util.HashMap;
@@ -114,26 +115,6 @@ public class Review {
     return punc;
   }
   
-   /**
-   * Returns the word after removing any beginning or ending punctuation
-   */
-  public static String removePunctuation( String word )
-  {
-    while(word.length() > 0 && !Character.isAlphabetic(word.charAt(0)))
-    {
-      word = word.substring(1);
-    }
-    while(word.length() > 0 && !Character.isAlphabetic(word.charAt(word.length()-1)))
-    {
-      word = word.substring(0, word.length()-1);
-    }
-    
-    return word;
-  }
- 
-
-
-  
   /** 
    * Randomly picks a positive adjective from the positiveAdjectives.txt file and returns it.
    */
@@ -165,4 +146,63 @@ public class Review {
       return randomNegativeAdj();
     }
   }
+  public static double totalSentiment(String fileName)
+  {
+   String review = fileName;
+   String word = "";
+   double total = 0;
+   for (int i = 0; i < review.length(); i++)
+   {
+      if (review.substring(i, i+1).equals(" ") == false)
+      {
+         word += review.substring(i, i+1);
+      }
+      else
+      {
+         total += sentimentVal(removePunctuation(word));
+         word = "";
+      }
+   }
+   total += sentimentVal(removePunctuation(word));
+   return total;
+  }
+   /**
+   * Returns the word after removing any beginning or ending punctuation
+   */
+  public static String removePunctuation( String word )
+  {
+    while(word.length() > 0 && !Character.isAlphabetic(word.charAt(0)))
+    {
+      word = word.substring(1);
+    }
+    while(word.length() > 0 && !Character.isAlphabetic(word.charAt(word.length()-1)))
+    {
+      word = word.substring(0, word.length()-1);
+    }
+    
+    return word;
+  }
+  public static int starRating(String fileName)
+  {
+      if (totalSentiment(fileName) <= -1)
+      {
+            return 1;
+      }
+      else if (totalSentiment(fileName) <= 0)
+      {
+            return 2;
+      }
+      else if (totalSentiment(fileName) <= 4)
+      {
+            return 3;
+      }
+      else if (totalSentiment(fileName) <= 8)
+      {
+            return 4;
+      }
+      else
+      {
+            return 5;
+      }
+ }
 }
