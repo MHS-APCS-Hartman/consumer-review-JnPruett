@@ -204,5 +204,50 @@ public class Review {
       {
             return 5;
       }
- }
+    
+  }
+   public static String fakeReviewStronger(String fileName)
+  {
+    String review = textToString(fileName);
+    String word = "";
+    String sentence = "";
+
+    for (int i = 0; i < review.length(); i++) {
+      word += review.substring(i, i + 1);
+      if ((review.substring(i, i + 1).equals(" ")) || (i == review.length() - 1)) {
+       
+        if (word.endsWith(" ")) word = word.substring(0, word.length()-1);
+
+        if (word.startsWith("*"))
+        {
+           double s  = sentimentVal(word);
+
+           String newAdj = "";
+           if (s < 0)
+           {
+               while ( (newAdj.equals("")) || (sentimentVal(newAdj) >= s) )
+                  newAdj = randomNegativeAdj();
+           }
+           else if (s > 0)
+           {
+               while ( (newAdj.equals("")) || (sentimentVal(newAdj) <= s) )
+                  newAdj = randomPositiveAdj();
+
+           }
+           else  // keep neutral adjectives neutral, just remove the *
+           {
+               newAdj = word.substring(1);
+           }
+
+           sentence += newAdj + getPunctuation(word) + " ";
+        } else {
+           sentence += word + " ";
+        }
+
+        word = "";
+      }
+    }
+    return sentence;
+  }
+  
 }
