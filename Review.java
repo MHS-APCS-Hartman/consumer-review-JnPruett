@@ -196,13 +196,13 @@ public class Review {
       {
             return 3;
       }
-      else if (totalSentiment(fileName) <= 8)
+      else if (totalSentiment(fileName) <= 8) 
       {
             return 4;
       }
       else
       {
             return 5;
-      }
+      } // Each return a corresponding star rating based on the totatlSentimentVal() method based on the review input. 
  }
 }
