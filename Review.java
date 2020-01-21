@@ -197,13 +197,15 @@ public class Review {
       {
             return 3;
       }
-      else if (totalSentiment(fileName) <= 8)
+      else if (totalSentiment(fileName) <= 8) 
       {
             return 4;
       }
       else
       {
             return 5;
+
+      } 
       }
     
   }
@@ -251,8 +253,41 @@ public class Review {
     return sentence;
   }
   
+    public static String fakeReview(String fileName)
+      {
+        String review = textToString(fileName);
+        String word = "";
+        String sentence = "";
+        for (int i = 0; i < review.length(); i++)
+          {
+            if (review.substring(i, i+1).equals(" ") || i == review.length() - 1)
+            {
+              if (i == review.length() -1)  word += review.substring(i, i+1); // adds the last character in the file to the word. 
+              
+              if (word.startsWith("*"))
+              {
+                String newAdj = "";
+                while (newAdj.equals(""))
+                    newAdj = randomPositiveAdj();
+                sentence += newAdj + getPunctuation(word) + " ";
+                word = "";
+              }
+              else 
+              {
+                sentence += word + " ";
+                word = "";
+              }
+            } 
+            else
+            {
+              word += review.substring(i, i+1);
+            }
 
 
 
+          }
+          return sentence;
+    }
+    
  }
 }
