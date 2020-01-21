@@ -1,4 +1,4 @@
-*/
+
 import java.util.Scanner;
 import java.io.File;
 import java.util.HashMap;
@@ -95,7 +95,7 @@ public class Review {
     }
     catch(Exception e)
     {
-      return 0;
+      return 0.0;
     }
   }
   
@@ -148,7 +148,8 @@ public class Review {
   }
   public static double totalSentiment(String fileName)
   {
-   String review = fileName;
+  
+   String review = textToString(fileName); // Used the textToString method to create a string from the file input by the user. 
    String word = "";
    double total = 0;
    for (int i = 0; i < review.length(); i++)
@@ -250,4 +251,8 @@ public class Review {
     return sentence;
   }
   
+
+
+
+ }
 }
