@@ -197,13 +197,15 @@ public class Review {
       {
             return 3;
       }
-      else if (totalSentiment(fileName) <= 8)
+      else if (totalSentiment(fileName) <= 8) 
       {
             return 4;
       }
       else
       {
             return 5;
+
+      } 
       }
     
     public static String fakeReview(String fileName)
@@ -236,6 +238,10 @@ public class Review {
               word += review.substring(i, i+1);
             }
 
+
+
+
+=======
           }
           return sentence;
     }
