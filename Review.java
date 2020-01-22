@@ -268,7 +268,7 @@ public class Review {
               {
                 String newAdj = "";
                 while (newAdj.equals(""))
-                    newAdj = randomPositiveAdj();
+                    newAdj = randomAdjective();
                 sentence += newAdj + getPunctuation(word) + " ";
                 word = "";
               }
@@ -282,9 +282,6 @@ public class Review {
             {
               word += review.substring(i, i+1);
             }
-
-
-
           }
           return sentence;
     }
