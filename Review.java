@@ -229,7 +229,7 @@ public class Review {
            String newAdj = "";
            if (s < 0)
            {
-               while ( (newAdj.equals("")) || (sentimentVal(newAdj) >= s) )
+               while ( (newAdj.equals("")) || (sentimentVal(newAdj) >= s) ) //Utilizes a while looop to generate new negative or postiive adjectives with a corresponding sentiment value of the current word in comparison to the newAdjective to make it stronger. 
                   newAdj = randomNegativeAdj();
            }
            else if (s > 0)
